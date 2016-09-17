@@ -30,7 +30,9 @@ const findAttr = (list, attrName) => {
       return item.content || ''
     })
 
-  return attrs[0] || ''
+  return attrs[0] ?
+    attrs[0].replace(/\r\n/g, '')
+    : ''
 }
 
 const parseXmlResponseBody = (responseBody, rssUrl) => {
