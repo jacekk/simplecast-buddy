@@ -4,6 +4,7 @@
   "description": "A little helper to fetch and parse simplecase data.",
   "main": "list-podcasts.js",
   "dependencies": {
+    "get-value": "^2.0.6",
     "request": "^2.74.0",
     "string-padding": "^1.0.2",
     "xml-parser": "^1.2.1"

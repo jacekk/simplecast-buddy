@@ -1,6 +1,7 @@
 const fs = require('fs')
 const request = require('request')
 const parser = require('xml-parser')
+const getValue = require('get-value')
 const pad = require('string-padding')
 
 const PODCASTS_LIST_PATH = './listed-podcasts.txt'
@@ -19,20 +20,36 @@ if (doSaveToFile) {
   podcastsListFileHandler = fs.openSync(PODCASTS_LIST_PATH, 'w')
 }
 
+const findAttr = (list, attrName) => {
+  const attrs = list
+    .filter((item) => {
+      return item.name === attrName
+    })
+    .map((item) => {
+      return item.content || ''
+    })
+
+  return attrs[0] || ''
+}
+
 const parseXmlResponseBody = (responseBody, rssUrl) => {
   const parsed = parser(responseBody)
-  const details = parsed.root.children[0].children
+  const details = getValue(parsed, 'root.children.0.children')
 
-  const title = details[1].content
-  const description = details[3].content
-  const lang = details[5].content
-  const link = details[8].content
+  if (! details) {
+    return
+  }
+
+  const lang = findAttr(details, 'language')
+  const link = findAttr(details, 'link')
+  const title = findAttr(details, 'title')
+  const description = findAttr(details, 'description')
 
   let podcastDetails = [
-    pad(rssUrl, 44, ' ', pad.RIGHT),
+    pad(rssUrl, 42, ' ', pad.RIGHT),
     pad(lang, 5, ' ', pad.RIGHT),
-    pad(title, 50, ' ', pad.RIGHT),
-    doLogDescription ? pad(link, 50, ' ', pad.RIGHT) : link,
+    pad(link, 60, ' ', pad.RIGHT),
+    doLogDescription ? pad(title, 50, ' ', pad.RIGHT) : title,
   ];
 
   console.log(podcastDetails.join(' || '));
