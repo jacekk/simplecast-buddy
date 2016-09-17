@@ -16,6 +16,7 @@
 
 #### Todo
 
-* `node find-by-category.js laravel` - use "itunes:category" param
+* `node find-by-keywords.js laravel` - use "itunes:keywords" param
+* `node find-by-categories.js laravel` - use "itunes:category" (sometimes nested) params
 * handle "socket hang up" error
-* add "-- concurrent" param
+* add "--concurrent" param
