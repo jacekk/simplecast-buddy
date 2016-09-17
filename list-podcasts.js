@@ -7,15 +7,13 @@ const pad = require('string-padding')
 const PODCASTS_LIST_PATH = './listed-podcasts.txt'
 
 const startId = parseInt(process.argv[2] || 1)
-const endId = parseInt(process.argv[3] || 10)
+const amount = parseInt(process.argv[3] || 10)
 const doSaveToFile = process.argv.includes('--save-to-file')
 const doLogDescription = process.argv.includes('--with-description')
 
-if (startId > endId) {
-  return console.error('Start id cannot be higher than end id :P')
-}
-
+const highestId = startId + amount - 1
 let podcastsListFileHandler
+
 if (doSaveToFile) {
   podcastsListFileHandler = fs.openSync(PODCASTS_LIST_PATH, 'w')
 }
@@ -50,9 +48,9 @@ const parseXmlResponseBody = (responseBody, rssUrl) => {
     pad(lang, 5, ' ', pad.RIGHT),
     pad(link, 60, ' ', pad.RIGHT),
     doLogDescription ? pad(title, 50, ' ', pad.RIGHT) : title,
-  ];
+  ]
 
-  console.log(podcastDetails.join(' || '));
+  console.log(podcastDetails.join(' || '))
 
   if (doLogDescription) {
     podcastDetails.push(description)
@@ -67,7 +65,7 @@ const parseXmlResponseBody = (responseBody, rssUrl) => {
   }
 }
 
-for (var id = startId; id <= endId; id += 1) {
+for (let id = highestId; id >= startId; id -= 1) {
   const url = `https://simplecast.com/podcasts/${id}/rss`
 
   request(url, (error, response, body) => {
