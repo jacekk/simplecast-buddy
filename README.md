@@ -14,6 +14,10 @@
 * `node list-podcasts.js 1 100 --save-to-file --with-description`
 * `node list-podcasts.js --show-errors`
 
+#### Preview
+
+![list podcasts preview](previews/list-podcasts-preview.png)
+
 #### Todo
 
 * `node find-by-keywords.js laravel` - use "itunes:keywords" param
