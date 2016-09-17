@@ -1,0 +1,15 @@
+{
+  "name": "simplecast-buddy",
+  "version": "0.1.0",
+  "description": "A little helper to fetch and parse simplecase data.",
+  "main": "list-podcasts.js",
+  "dependencies": {
+    "request": "^2.74.0",
+    "string-padding": "^1.0.2",
+    "xml-parser": "^1.2.1"
+  },
+  "devDependencies": {},
+  "scripts": {},
+  "author": "jacekk",
+  "license": "MIT"
+}
