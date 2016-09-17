@@ -8,6 +8,7 @@
 * `node list-podcasts.js` **1** and **10** are the defaults
 * `node list-podcasts.js 1 100 --save-to-file`
 * `node list-podcasts.js 1 100 --save-to-file --with-description`
+* `node list-podcasts.js --show errors`
 
 #### Requirements
 
