@@ -1,7 +1,7 @@
 {
   "name": "simplecast-buddy",
   "version": "0.1.0",
-  "description": "A little helper to fetch and parse simplecase data.",
+  "description": "A little helper to fetch and parse simplecast.com data.",
   "main": "list-podcasts.js",
   "dependencies": {
     "get-value": "^2.0.6",
